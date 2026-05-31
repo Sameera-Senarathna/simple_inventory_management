@@ -31,11 +31,11 @@ app.include_router(transactions.router)
 
 def _seed_admin():
     with get_db() as conn:
-        existing = conn.execute("SELECT id FROM users WHERE email = 'admin@surgical.com'").fetchone()
+        existing = conn.execute("SELECT id FROM users WHERE email = 'uchithald@gmail.com '").fetchone()
         if not existing:
             conn.execute(
                 "INSERT INTO users (email, name, password_hash, is_admin) VALUES (?, ?, ?, 1)",
-                ("admin@surgical.com", "Admin", hash_password("Admin@123")),
+                ("uchithald@gmail.com ", "Admin", hash_password("Sameera@SriLanka#123")),
             )
 
 

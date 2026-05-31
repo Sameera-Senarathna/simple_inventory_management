@@ -30,7 +30,7 @@ export default function Login() {
       <div className="relative z-10 w-full max-w-[400px] bg-gradient-to-b from-surface to-surface2 rounded-2xl px-[30px] py-10 shadow-[0_30px_70px_-24px_rgba(13,83,14,.4)] border border-line border-t-[3px] border-t-primary animate-rise">
         <div className="text-center mb-[30px]">
           <img
-            src="/logo.svg"
+            src={`${import.meta.env.BASE_URL}logo.svg`}
             alt="Surgical Inventory"
             className="block w-[72px] h-[72px] mx-auto mb-3.5 animate-emblem"
           />

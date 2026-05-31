@@ -45,7 +45,7 @@ export default function Header() {
             </svg>
           </button>
           <img
-            src="/logo.svg"
+            src={`${import.meta.env.BASE_URL}logo.svg`}
             alt="Surgical Inventory"
             className="w-8 h-8"
           />

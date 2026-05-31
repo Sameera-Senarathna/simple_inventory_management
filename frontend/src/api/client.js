@@ -1,4 +1,5 @@
-const BASE = "/api";
+// BASE_URL is "/surgical/" in prod, "/" in dev → "/surgical/api" or "/api"
+const BASE = `${import.meta.env.BASE_URL}api`;
 
 function getToken() {
   return localStorage.getItem("token");
@@ -14,7 +15,7 @@ async function request(path, options = {}) {
   if (res.status === 401) {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    window.location.href = "/login";
+    window.location.href = `${import.meta.env.BASE_URL}login`;
     return;
   }
 

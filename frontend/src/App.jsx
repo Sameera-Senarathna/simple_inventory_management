@@ -7,6 +7,9 @@ import FillTake from "./pages/FillTake";
 import Users from "./pages/Users";
 import Layout from "./components/Layout";
 
+// "/surgical/" in production, "/" in dev — strip trailing slash for the router
+const basename = import.meta.env.BASE_URL.replace(/\/$/, "") || "/";
+
 function PrivateRoute({ children, adminOnly = false }) {
   const { user } = useAuth();
   if (!user) return <Navigate to="/login" replace />;
@@ -17,7 +20,7 @@ function PrivateRoute({ children, adminOnly = false }) {
 export default function App() {
   return (
     <AuthProvider>
-      <BrowserRouter>
+      <BrowserRouter basename={basename}>
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route

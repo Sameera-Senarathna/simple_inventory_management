@@ -2,7 +2,9 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 
-export default defineConfig({
+export default defineConfig(({ command }) => ({
+  // Served under /surgical/ in production (behind Nginx), at root in dev
+  base: command === "build" ? "/surgical/" : "/",
   plugins: [react(), tailwindcss()],
   server: {
     port: 5173,
@@ -14,4 +16,4 @@ export default defineConfig({
       },
     },
   },
-});
+}));

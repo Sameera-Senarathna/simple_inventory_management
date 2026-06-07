@@ -1,4 +1,4 @@
-// BASE_URL is "/surgical/" in prod, "/" in dev → "/surgical/api" or "/api"
+// BASE_URL is "/" → "/api"
 const BASE = `${import.meta.env.BASE_URL}api`;
 
 function getToken() {

@@ -8,7 +8,7 @@ import Users from "./pages/Users";
 import ChangePassword from "./pages/ChangePassword";
 import Layout from "./components/Layout";
 
-// "/surgical/" in production, "/" in dev — strip trailing slash for the router
+// Served at the domain root — strip trailing slash for the router
 const basename = import.meta.env.BASE_URL.replace(/\/$/, "") || "/";
 
 function PrivateRoute({ children, adminOnly = false }) {

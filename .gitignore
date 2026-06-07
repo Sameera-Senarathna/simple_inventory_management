@@ -28,6 +28,7 @@ ENV/
 .env
 .env.*
 !.env.example
+.jwt_secret
 
 # ---- Editor / OS ----
 .vscode/
@@ -37,3 +38,6 @@ Thumbs.db
 
 # ---- Claude Code local settings ----
 .claude/settings.local.json
+
+# ---- Local docs (not tracked) ----
+docs/

@@ -1,10 +1,11 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { AuthProvider, useAuth } from "./context/AuthContext";
 import Login from "./pages/Login";
 import ItemList from "./pages/ItemList";
 import ItemForm from "./pages/ItemForm";
 import FillTake from "./pages/FillTake";
 import Users from "./pages/Users";
+import ChangePassword from "./pages/ChangePassword";
 import Layout from "./components/Layout";
 
 // "/surgical/" in production, "/" in dev — strip trailing slash for the router
@@ -12,7 +13,12 @@ const basename = import.meta.env.BASE_URL.replace(/\/$/, "") || "/";
 
 function PrivateRoute({ children, adminOnly = false }) {
   const { user } = useAuth();
+  const location = useLocation();
   if (!user) return <Navigate to="/login" replace />;
+  // Force a password change on first login before any other page is reachable.
+  if (user.must_change_password && location.pathname !== "/change-password") {
+    return <Navigate to="/change-password" replace />;
+  }
   if (adminOnly && !user.is_admin) return <Navigate to="/" replace />;
   return children;
 }
@@ -32,6 +38,7 @@ export default function App() {
             }
           >
             <Route index element={<ItemList />} />
+            <Route path="change-password" element={<ChangePassword />} />
             <Route path="items/new" element={<ItemForm />} />
             <Route path="items/:id/edit" element={<ItemForm />} />
             <Route path="fill-take" element={<FillTake />} />
